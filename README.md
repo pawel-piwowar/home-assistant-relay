@@ -11,19 +11,27 @@ There are many such devices on the market, however all are dedicated for Tuya, n
 In case of Zigbee models, they can be used in HA, however without scheduling functionality (which is accessible if the same device is used in Tuya).
 
 ## Main project features
-- hardware based on esp8266 mini with standard relay (hardware connections are so obvious, so I will not attach any diagrams)
-- Home Assistant main platform 
-- ESPHome for preparing software for esp8266
+- hardware based on esp8266 mini with standard relay 
+
+- Home Assistant as main automation platform 
+- ESPHome for managing software for esp8266
+
+## Hardware
+I used ESP8266 mini, however any other version of ESP 8266 or ESP 32 could be used as well.
+I used 3.3 V Relay, for 5V relay, 5V pin from ESP should be used.
+It is also important not to plug USB cable and external 5V power supply at the same time, since it could damage the chip.
+
+![img.png](hardware.png)
 
 ## Installation
-- prepare all required hardware, e.g. esp8266 (esp32 is also ok), 3,3V or 5V relay
+- Prepare all required hardware, e.g. esp8266 (esp32 is also ok), 3,3V or 5V relay
 - Install Home Assistant (https://www.home-assistant.io/installation/) . In my case I used Raspberry 4 as HA server.
 - Install ESPHome addon to HA: https://esphome.io/guides/getting_started_hassio.html
 - Use "New Device" button on ESPHome page, choose "Open ESPHome Web" option, follow instructions.
-- Copy content of [esphome-relay.yaml](esphome-relay.yaml) script in place of newly created ESPHome configuration, modifying ESP chip type and other params if needed.
+- Copy content of [esphome-relay.yaml](esphome-relay.yaml) script in place of newly created ESPHome configuration,
+modifying ESP chip type and other params if needed, e.g. relay pin in section: switch/platform: gpio/pin
 - If everything is ok, you will see new device under Settings/Devices&Services/ESPHome
-
-![img.png](img.png)
+![esphome-config.png](esphome-config.png)
 
 Result in HA dashboard
 
